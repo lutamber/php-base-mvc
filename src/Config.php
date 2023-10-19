@@ -3,11 +3,11 @@ namespace src;
 
 class Config 
 {
-    const BASE_DIR = '/atualizador/web/public';
+    const BASE_DIR = '/php-base-mvc/public';
 
     const DB_DRIVER = 'mysql';
     const DB_HOST = 'localhost';
-    const DB_DATABASE = 'atualizador';
+    const DB_DATABASE = '';
     CONST DB_USER = 'root';
     const DB_PASS = '';
 

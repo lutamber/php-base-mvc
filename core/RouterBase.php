@@ -22,8 +22,11 @@ class RouterBase
         //Verify route exists
         if(isset($this->routes[$method])) 
         {
-            foreach($this->routes[$method] as $route => $callback) 
+            foreach($this->routes[$method] as $route => $routeData) 
             {
+                $callback = $routeData['trigger'];
+                $middleware = $routeData['middleware'];
+
                 //regex to identify arguments and replace
                 $pattern = preg_replace('(\{[a-z0-9]{1,}\})', '([a-z0-9-]{1,})', $route);
 
@@ -45,12 +48,16 @@ class RouterBase
                         $args[$itens[$key]] = $match;
                     }
 
-                    //Define controller and action
-                    $callbackSplit = explode('@', $callback);
-                    $controller = $callbackSplit[0];
-
-                    if(isset($callbackSplit[1])) 
-                        $action = $callbackSplit[1];
+                    //Execute middlewares if exists or pass if not exists
+                    if(!isset($middleware) || empty($middleware) || (!empty($middleware) && $middleware->run()))
+                    {
+                        //Define controller and action
+                        $callbackSplit = explode('@', $callback);
+                        $controller = $callbackSplit[0];
+    
+                        if(isset($callbackSplit[1])) 
+                            $action = $callbackSplit[1];
+                    }
 
                     break;
                 }

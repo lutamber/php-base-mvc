@@ -11,33 +11,45 @@ class Router extends RouterBase
     /**
      * Define GET method Route
      */
-    public function get($endpoint, $trigger) 
+    public function get($endpoint, $trigger, $middleware = null) 
     {
-        $this->routes['get'][$endpoint] = $trigger;
+        $this->routes['get'][$endpoint] = array(
+            "middleware" => $middleware,
+            "trigger" => $trigger
+        );
     }
 
     /**
      * Define POST method Route
      */
-    public function post($endpoint, $trigger) 
+    public function post($endpoint, $trigger, $middleware = null) 
     {
-        $this->routes['post'][$endpoint] = $trigger;
+        $this->routes['post'][$endpoint] = array(
+            "middleware" => $middleware,
+            "trigger" => $trigger
+        );
     }
 
     /**
      * Define PUT method Route
      */
-    public function put($endpoint, $trigger) 
+    public function put($endpoint, $trigger, $middleware = null) 
     {
-        $this->routes['put'][$endpoint] = $trigger;
+        $this->routes['put'][$endpoint] = array(
+            "middleware" => $middleware,
+            "trigger" => $trigger
+        );
     }
 
     /**
      * Define DELETE method Route
      */
-    public function delete($endpoint, $trigger) 
+    public function delete($endpoint, $trigger, $middleware = null) 
     {
-        $this->routes['delete'][$endpoint] = $trigger;
+        $this->routes['delete'][$endpoint] = array(
+            "middleware" => $middleware,
+            "trigger" => $trigger
+        );
     }
 
 }

@@ -24,4 +24,27 @@ class Request {
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
 
+    /**
+     * Get request body
+     */
+    public static function getBody() 
+    {
+        return file_get_contents('php://input');
+    }
+    
+    /**
+     * Get request header
+     */
+    public static function getHeader() 
+    {
+        return getallheaders();
+    }
+    
+    /**
+     * Get request files
+     */
+    public static function getFiles() 
+    {
+        return $_FILES;
+    }
 }
